@@ -10,6 +10,7 @@
   font-family: "Pacifico", Pacifico;
   font-size: 48px;
   text-align: center;
+  margin-bottom: 8px;
 }
 
 .fancy {

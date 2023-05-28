@@ -97,7 +97,7 @@ export default {
 
 .navbar {
   box-shadow: none; /* Remove the box shadow */
-  top: 0;
-  position: sticky;
+  top: 0 !important;
+  position: relative !important;
 }
 </style>

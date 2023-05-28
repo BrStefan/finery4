@@ -3,6 +3,7 @@
     <v-container>
       <Logo />
       <Navbar />
+      <!-- Rest of the content -->
     </v-container>
   </v-main>
 </template>
@@ -11,9 +12,3 @@
 import Logo from "@/components/Logo.vue";
 import Navbar from "@/components/Navbar.vue";
 </script>
-
-<style>
-.logo-container {
-  display: flex;
-}
-</style>
