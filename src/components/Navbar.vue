@@ -1,6 +1,9 @@
 <template>
   <v-app-bar app class="navbar" :elevation="0">
-    <v-app-bar-nav-icon v-if="isMobile" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon
+      v-if="isMobile"
+      @click="drawer = !drawer"
+    ></v-app-bar-nav-icon>
     <v-container class="nav-container">
       <v-row align="center" justify="center">
         <v-col cols="auto" v-if="!isMobile">
@@ -20,12 +23,7 @@
     </v-container>
   </v-app-bar>
 
-  <v-navigation-drawer
-    v-model="drawer"
-    app
-    temporary
-    class="nav-drawer"
-  >
+  <v-navigation-drawer v-model="drawer" app temporary class="nav-drawer">
     <v-list class="nav-list-mobile">
       <v-list-item
         v-for="item in items"
@@ -46,12 +44,12 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: 'Home', link: '/' },
-        { title: 'Shop', link: '/shop' },
-        { title: 'Collections', link: '/collections' },
-        { title: 'Gifts', link: '/gifts' },
-        { title: 'Sale', link: '/sale' },
-        { title: 'Stores', link: '/stores' },
+        { title: "Home", link: "/" },
+        { title: "Shop", link: "/shop" },
+        { title: "Collections", link: "/collections" },
+        { title: "Gifts", link: "/gifts" },
+        { title: "Sale", link: "/sale" },
+        { title: "Stores", link: "/stores" },
       ],
     };
   },
@@ -99,5 +97,7 @@ export default {
 
 .navbar {
   box-shadow: none; /* Remove the box shadow */
+  top: 0;
+  position: sticky;
 }
 </style>
