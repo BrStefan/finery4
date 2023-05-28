@@ -1,9 +1,7 @@
 <template>
-  <v-container class="logo-container">
-    <div class="logo">
-      <span class="fancy">Finery</span>
-    </div>
-  </v-container>
+  <div class="logo">
+    <span class="fancy">Finery Magazine</span>
+  </div>
 </template>
 
 <style lang="scss">
@@ -16,9 +14,5 @@
 
 .fancy {
   /* Add any additional styling you want for the fancy effect */
-}
-
-.logo-container {
-  margin-top: 80px; /* Adjust the margin-top value as needed */
 }
 </style>
