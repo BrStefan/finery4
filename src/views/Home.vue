@@ -1,6 +1,6 @@
 <template>
   <v-main class="main">
-    <v-container>
+    <v-container fluid class="container">
       <Logo v-if="!isMobile" />
       <Navbar />
       <!-- Rest of the content -->
@@ -26,5 +26,9 @@ export default {
 <style>
 .main {
   padding-top: 0px !important;
+}
+
+.container {
+  background-color: antiquewhite;
 }
 </style>

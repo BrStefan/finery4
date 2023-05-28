@@ -4,19 +4,20 @@
     class="navbar custom-app-bar"
     :elevation="0"
     :class="{ 'move-down': !isMobile }"
+    color="#000000"
   >
     <v-app-bar-nav-icon
       v-if="isMobile"
       @click="drawer = !drawer"
     ></v-app-bar-nav-icon>
 
-    <v-app-bar-title>
-      <v-toolbar-title :class="{ 'mobile-title': isMobile }"
-        >Finery Magazine</v-toolbar-title
+    <div class="custom-toolbar">
+      <v-app-bar-title v-if="isMobile" class="navTitle"
+        >Finery Magazine</v-app-bar-title
       >
-    </v-app-bar-title>
+    </div>
 
-    <v-container class="nav-container">
+    <v-container fluid class="nav-container">
       <v-row align="center" justify="center">
         <v-col cols="auto" v-if="!isMobile">
           <v-list dense class="nav-list">
@@ -98,7 +99,7 @@ export default {
 }
 
 .nav-drawer {
-  background-color: #ffffff; /* Customize the drawer background color */
+  background-color: white; /* Customize the drawer background color */
 }
 
 .nav-container {
@@ -115,7 +116,7 @@ export default {
   margin-top: 128px; /* Adjust the value as needed */
 }
 
-.mobile-title {
+.navTitle .v-toolbar-title__placeholder {
   overflow: visible !important; /* Override overflow */
 }
 </style>
