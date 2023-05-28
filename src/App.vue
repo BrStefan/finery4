@@ -1,18 +1,9 @@
 <template>
-  <div id="app">
+  <v-app>
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script setup>
 //
-</script>
-
-<script>
-export default {
-  mounted() {
-    const appElement = document.getElementById("app");
-    appElement.classList.remove("v-layout-top");
-  },
-};
 </script>

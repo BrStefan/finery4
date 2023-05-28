@@ -97,7 +97,9 @@ export default {
 
 .navbar {
   box-shadow: none; /* Remove the box shadow */
-  top: 0 !important;
-  position: relative !important;
 }
+</style>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 </style>
