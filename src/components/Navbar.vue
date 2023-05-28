@@ -1,9 +1,21 @@
 <template>
-  <v-app-bar app class="navbar" :elevation="0">
+  <v-app-bar
+    app
+    class="navbar custom-app-bar"
+    :elevation="0"
+    :class="{ 'move-down': !isMobile }"
+  >
     <v-app-bar-nav-icon
       v-if="isMobile"
       @click="drawer = !drawer"
     ></v-app-bar-nav-icon>
+
+    <v-app-bar-title>
+      <v-toolbar-title :class="{ 'mobile-title': isMobile }"
+        >Finery Magazine</v-toolbar-title
+      >
+    </v-app-bar-title>
+
     <v-container class="nav-container">
       <v-row align="center" justify="center">
         <v-col cols="auto" v-if="!isMobile">
@@ -98,8 +110,20 @@ export default {
 .navbar {
   box-shadow: none; /* Remove the box shadow */
 }
+
+.custom-app-bar.move-down {
+  margin-top: 128px; /* Adjust the value as needed */
+}
+
+.mobile-title {
+  overflow: visible !important; /* Override overflow */
+}
 </style>
 
-<style lang="scss">
+<!-- <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-</style>
+.fancyfont {
+  font-family: "Pacifico", Pacifico;
+  overflow: auto !important ;
+}
+</style> -->
