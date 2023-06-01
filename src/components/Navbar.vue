@@ -4,7 +4,6 @@
     class="navbar custom-app-bar"
     :elevation="0"
     :class="{ 'move-down': !isMobile }"
-    color="#000000"
   >
     <v-app-bar-nav-icon
       v-if="isMobile"
