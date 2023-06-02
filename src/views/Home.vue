@@ -3,7 +3,9 @@
     <v-container fluid>
       <Logo v-if="!isMobile" />
       <Navbar />
-      <Article></Article>
+      <v-container fluid class="articles">
+        <Article></Article>
+      </v-container>
       <!-- Rest of the content -->
     </v-container>
   </v-main>
@@ -28,5 +30,9 @@ export default {
 <style>
 .main {
   padding-top: 0px !important;
+}
+
+.articles {
+  margin-top: 50px;
 }
 </style>
