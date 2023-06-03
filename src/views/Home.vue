@@ -5,6 +5,7 @@
       <Navbar />
       <v-container fluid class="articles">
         <Article></Article>
+        <OurMission />
       </v-container>
       <!-- Rest of the content -->
     </v-container>
@@ -15,6 +16,7 @@
 import Logo from "@/components/Logo.vue";
 import Navbar from "@/components/Navbar.vue";
 import Article from "@/components/Article.vue";
+import OurMission from "@/components/OurMission.vue";
 </script>
 
 <script>
@@ -34,5 +36,7 @@ export default {
 
 .articles {
   margin-top: 50px;
+  display: flex;
+  align-items: center;
 }
 </style>

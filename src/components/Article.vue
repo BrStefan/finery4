@@ -1,29 +1,32 @@
 <template>
   <v-container class="articleContaier">
+    <v-pagination
+      class="pagination"
+      v-model="currentPage"
+      :length="totalPages"
+      @input="paginate"
+    ></v-pagination>
     <v-row flex-wrap>
       <v-row v-for="article in paginatedArticles" :key="article.id">
-        <v-card class="mb-4">
-          <v-card-text>
+        <v-card class="mb-4 cardArticle">
+          <v-card-text class="articleInnerContainer">
             <v-row no-gutters>
               <v-col cols="2">
                 <v-img
                   :src="article.image"
-                  class="articleimg"
-                  height="250px"
+                  aspect-ratio="16/9"
+                  class="articleimg fill-height"
+                  max-height="850px"
                   contain
                 ></v-img>
               </v-col>
-              <v-col cols="10">
+              <v-col cols="8" class="pl-4">
                 <v-card-title>
                   {{ article.title }}
                 </v-card-title>
                 <v-card-text>
                   {{ article.description }}
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn text>Read More</v-btn>
-                </v-card-actions>
-                <v-card-subtitle class="mt-2">Hashtags:</v-card-subtitle>
                 <v-card-text>
                   <v-chip
                     v-for="tag in article.hashtags"
@@ -40,12 +43,6 @@
         </v-card>
       </v-row>
     </v-row>
-
-    <v-pagination
-      v-model="currentPage"
-      :length="totalPages"
-      @input="paginate"
-    ></v-pagination>
   </v-container>
 </template>
 
@@ -66,10 +63,25 @@ export default {
           title: "Article 2",
           description: "Description for Article 2",
           image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
+          hashtags: ["#sunglasses", "#summer"],
+        },
+        {
+          id: 3,
+          title: "Article 2",
+          description: "Description for Article 2",
+          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
+          hashtags: ["#sunglasses", "#summer"],
+        },
+        {
+          id: 4,
+          title: "Article 2",
+          description: "Description for Article 2",
+          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
+          hashtags: ["#sunglasses", "#summer"],
         },
         // Add more articles as needed
       ],
-      pageSize: 4, // Number of articles per page
+      pageSize: 3, // Number of articles per page
       currentPage: 1, // Current page
     };
   },
@@ -98,9 +110,27 @@ export default {
 
 .articleContaier {
   margin-top: 72px;
+  max-width: 50% !important;
+  display: inline-grid;
+  flex: 1;
 }
 
 .articleimg {
-  margin-right: 30px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.pagination {
+  margin-bottom: 50px;
+}
+
+.cardArticle {
+  margin-left: 50px;
+
+  padding: 2000px;
+}
+
+.articleInnerContainer {
+  padding: 30px !important;
 }
 </style>

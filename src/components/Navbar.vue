@@ -23,10 +23,27 @@
             <v-list-item
               v-for="item in items"
               :key="item.title"
-              link
-              active-class="active"
               @click="navigateTo(item.link)"
+              @mouseover="showDropdown(item)"
+              @mouseleave="hideDropdown(item)"
             >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-menu
+                v-if="item.showDropdown"
+                :close-on-content-click="false"
+                offset-y
+              >
+                <template v-slot:activator="{ on }"></template>
+                <v-list>
+                  <v-list-item
+                    v-for="subItem in item.dropdownItems"
+                    :key="subItem.title"
+                    link
+                  >
+                    <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -56,12 +73,30 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Home", link: "/" },
-        { title: "Shop", link: "/shop" },
-        { title: "Collections", link: "/collections" },
-        { title: "Gifts", link: "/gifts" },
-        { title: "Sale", link: "/sale" },
-        { title: "Stores", link: "/stores" },
+        {
+          title: "Section 1",
+          showDropdown: false,
+          dropdownItems: [
+            { title: "Subsection 1-1" },
+            { title: "Subsection 1-2" },
+          ],
+        },
+        {
+          title: "Section 2",
+          showDropdown: false,
+          dropdownItems: [
+            { title: "Subsection 2-1" },
+            { title: "Subsection 2-2" },
+          ],
+        },
+        {
+          title: "Section 3",
+          showDropdown: false,
+          dropdownItems: [
+            { title: "Subsection 3-1" },
+            { title: "Subsection 3-2" },
+          ],
+        },
       ],
     };
   },
@@ -73,6 +108,12 @@ export default {
   methods: {
     navigateTo(link) {
       // Implement your navigation logic here
+    },
+    showDropdown(item) {
+      item.showDropdown = true;
+    },
+    hideDropdown(item) {
+      item.showDropdown = false;
     },
   },
 };
@@ -117,6 +158,19 @@ export default {
 
 .navTitle .v-toolbar-title__placeholder {
   overflow: visible !important; /* Override overflow */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f5f5f5;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.v-list-item:hover .dropdown-menu {
+  display: block;
 }
 </style>
 
