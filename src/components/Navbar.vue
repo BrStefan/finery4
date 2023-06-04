@@ -46,13 +46,13 @@
   </v-app-bar>
 
   <v-navigation-drawer v-model="drawer" app temporary class="nav-drawer">
-    <v-list class="nav-list-mobile">
+    <!-- <v-list class="nav-list-mobile">
       <v-list-item
         v-for="item in items"
         :key="item.title"
-        link
-        active-class="active"
         @click="navigateTo(item.link)"
+        :ripple="false"
+        append-icon="mdi-menu-down"
       >
         <v-list-group
           v-if="item.dropdownItems"
@@ -69,12 +69,23 @@
             v-for="subItem in item.dropdownItems"
             :key="subItem.title"
             link
+            :ripple="false"
           >
             <v-list-item-title>{{ subItem.title }}</v-list-item-title>
           </v-list-item>
         </v-list-group>
       </v-list-item>
-    </v-list>
+    </v-list> -->
+    <v-list-item
+      v-for="item in items"
+      :key="item.title"
+      @click="navigateTo(item.link)"
+      :ripple="false"
+    >
+      <v-list-item-title v-if="item.hasOwnProperty('dropdownItems')">{{
+        item.title
+      }}</v-list-item-title>
+    </v-list-item>
   </v-navigation-drawer>
 </template>
 
@@ -85,8 +96,10 @@ export default {
       drawer: false,
       items: [
         {
+          title: "Home",
+        },
+        {
           title: "Section 1",
-          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
             { title: "Subsection 1-1", id: 1 },
             { title: "Subsection 1-2", id: 2 },
@@ -94,7 +107,6 @@ export default {
         },
         {
           title: "Section 2",
-          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
             { title: "Subsection 2-1" },
             { title: "Subsection 2-2" },
@@ -102,7 +114,6 @@ export default {
         },
         {
           title: "Section 3",
-          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
             { title: "Subsection 3-1" },
             { title: "Subsection 3-2" },

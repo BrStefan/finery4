@@ -6,7 +6,6 @@
 
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
-import '@mdi/js'
 import 'vuetify/styles'
 
 // Composables
@@ -21,10 +20,7 @@ export default createVuetify({
           primary: '#1867C0',
           secondary: '#5CBBF6',
         },
-      },
-      icons: {
-        iconfont: 'mdi',
-      },
+      }
     },
   },
 })
