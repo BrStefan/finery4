@@ -20,32 +20,25 @@
       <v-row align="center" justify="center">
         <v-col cols="auto" v-if="!isMobile">
           <v-list dense class="nav-list">
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              @click="navigateTo(item.link)"
-              @mouseover="showDropdown(item)"
-              @mouseleave="hideDropdown(item)"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-              <v-menu
-                v-if="item.showDropdown"
-                :close-on-content-click="false"
-                offset-y
-              >
-                <template v-slot:activator="{ on }"></template>
-                <v-list>
-                  <v-list-item
-                    v-for="subItem in item.dropdownItems"
-                    :key="subItem.title"
-                    link
-                  >
-                    <v-list-item-title>{{ subItem.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
+            <template v-for="item in items" :key="item.title">
+              <v-list-item class="navListItem" @click="navigateTo(item.link)">
+                <v-menu open-on-hover class="subitems">
+                  <template v-slot:activator="{ props }">
+                    <v-list-item-title v-bind="props">{{
+                      item.title
+                    }}</v-list-item-title>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in item.dropdownItems"
+                      :key="index"
+                    >
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </v-list-item>
+            </template>
           </v-list>
         </v-col>
       </v-row>
@@ -61,7 +54,25 @@
         active-class="active"
         @click="navigateTo(item.link)"
       >
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
+        <v-list-group
+          v-if="item.dropdownItems"
+          no-action
+          :prepend-icon="item.subItemsIcon"
+        >
+          <template v-slot:activator="{ props }">
+            <v-list-item-title v-bind="props">{{
+              item.title
+            }}</v-list-item-title>
+          </template>
+
+          <v-list-item
+            v-for="subItem in item.dropdownItems"
+            :key="subItem.title"
+            link
+          >
+            <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list-group>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -75,15 +86,15 @@ export default {
       items: [
         {
           title: "Section 1",
-          showDropdown: false,
+          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
-            { title: "Subsection 1-1" },
-            { title: "Subsection 1-2" },
+            { title: "Subsection 1-1", id: 1 },
+            { title: "Subsection 1-2", id: 2 },
           ],
         },
         {
           title: "Section 2",
-          showDropdown: false,
+          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
             { title: "Subsection 2-1" },
             { title: "Subsection 2-2" },
@@ -91,7 +102,7 @@ export default {
         },
         {
           title: "Section 3",
-          showDropdown: false,
+          subItemsIcon: "mdi-chevron-down",
           dropdownItems: [
             { title: "Subsection 3-1" },
             { title: "Subsection 3-2" },
@@ -108,12 +119,6 @@ export default {
   methods: {
     navigateTo(link) {
       // Implement your navigation logic here
-    },
-    showDropdown(item) {
-      item.showDropdown = true;
-    },
-    hideDropdown(item) {
-      item.showDropdown = false;
     },
   },
 };
@@ -159,18 +164,13 @@ export default {
 .navTitle .v-toolbar-title__placeholder {
   overflow: visible !important; /* Override overflow */
 }
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  background-color: #f5f5f5;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+.navListItem {
+  width: 200px;
+  text-align: center;
 }
 
-.v-list-item:hover .dropdown-menu {
-  display: block;
+.subitems {
+  box-shadow: none;
 }
 </style>
 
