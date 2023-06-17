@@ -3,9 +3,13 @@
     <v-container fluid>
       <Logo v-if="!isMobile" />
       <Navbar />
-      <v-container fluid class="articles">
-        <Article></Article>
+      <v-container
+        fluid
+        :class="{ articles: !isMobile, articlesMobile: isMobile }"
+      >
+        <Article v-if="!isMobile"></Article>
         <OurMission />
+        <ArticleMobile v-if="isMobile" />
       </v-container>
       <!-- Rest of the content -->
     </v-container>
@@ -17,6 +21,7 @@ import Logo from "@/components/Logo.vue";
 import Navbar from "@/components/Navbar.vue";
 import Article from "@/components/Article.vue";
 import OurMission from "@/components/OurMission.vue";
+import ArticleMobile from "@/components/ArticleMobile.vue";
 </script>
 
 <script>
@@ -38,5 +43,9 @@ export default {
   margin-top: 50px;
   display: flex;
   align-items: center;
+}
+
+.articlesMobile {
+  margin-top: 50px;
 }
 </style>
