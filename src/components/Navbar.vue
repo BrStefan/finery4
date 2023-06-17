@@ -46,46 +46,21 @@
   </v-app-bar>
 
   <v-navigation-drawer v-model="drawer" app temporary class="nav-drawer">
-    <!-- <v-list class="nav-list-mobile">
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        @click="navigateTo(item.link)"
-        :ripple="false"
-        append-icon="mdi-menu-down"
-      >
-        <v-list-group
-          v-if="item.dropdownItems"
-          no-action
-          :prepend-icon="item.subItemsIcon"
-        >
-          <template v-slot:activator="{ props }">
-            <v-list-item-title v-bind="props">{{
-              item.title
-            }}</v-list-item-title>
-          </template>
+    <v-list>
+      <v-list-item title="Home"></v-list-item>
 
-          <v-list-item
-            v-for="subItem in item.dropdownItems"
-            :key="subItem.title"
-            link
-            :ripple="false"
-          >
-            <v-list-item-title>{{ subItem.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list-group>
-      </v-list-item>
-    </v-list> -->
-    <v-list-item
-      v-for="item in items"
-      :key="item.title"
-      @click="navigateTo(item.link)"
-      :ripple="false"
-    >
-      <v-list-item-title v-if="item.hasOwnProperty('dropdownItems')">{{
-        item.title
-      }}</v-list-item-title>
-    </v-list-item>
+      <v-list-group v-for="item in items">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props">{{ item.title }}</v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="subitems in item.dropdownItems"
+          :key="subitems.id"
+          >{{ subitems.title }}</v-list-item
+        >
+      </v-list-group>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -96,9 +71,6 @@ export default {
       drawer: false,
       items: [
         {
-          title: "Home",
-        },
-        {
           title: "Section 1",
           dropdownItems: [
             { title: "Subsection 1-1", id: 1 },
@@ -108,15 +80,15 @@ export default {
         {
           title: "Section 2",
           dropdownItems: [
-            { title: "Subsection 2-1" },
-            { title: "Subsection 2-2" },
+            { title: "Subsection 2-1", id: 3 },
+            { title: "Subsection 2-2", id: 4 },
           ],
         },
         {
           title: "Section 3",
           dropdownItems: [
-            { title: "Subsection 3-1" },
-            { title: "Subsection 3-2" },
+            { title: "Subsection 3-1", id: 5 },
+            { title: "Subsection 3-2", id: 6 },
           ],
         },
       ],
@@ -130,6 +102,9 @@ export default {
   methods: {
     navigateTo(link) {
       // Implement your navigation logic here
+    },
+    hasProperty(item) {
+      return item.hasOwnProperty("dropdownItems");
     },
   },
 };
