@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <span class="fancy">Finery Magazine</span>
+    <span>Finery Magazine</span>
   </div>
 </template>
 
@@ -10,9 +10,5 @@
   font-family: "Pacifico", Pacifico;
   font-size: 48px;
   text-align: center;
-}
-
-.fancy {
-  /* Add any additional styling you want for the fancy effect */
 }
 </style>

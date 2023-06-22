@@ -130,6 +130,10 @@ export default {
   padding: 2000px;
 }
 
+.cardArticle:hover {
+  cursor: pointer;
+}
+
 .articleInnerContainer {
   padding: 30px !important;
 }

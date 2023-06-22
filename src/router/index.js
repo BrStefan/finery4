@@ -16,6 +16,10 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/page1',
+    component: () => import('@/views/Page1.vue'),
+  },
 ]
 
 const router = createRouter({

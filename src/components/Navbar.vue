@@ -21,7 +21,7 @@
         <v-col cols="auto" v-if="!isMobile">
           <v-list dense class="nav-list">
             <template v-for="item in items" :key="item.title">
-              <v-list-item class="navListItem" @click="navigateTo(item.link)">
+              <v-list-item class="navListItem">
                 <v-menu open-on-hover class="subitems">
                   <template v-slot:activator="{ props }">
                     <v-list-item-title v-bind="props">{{
@@ -33,7 +33,9 @@
                       v-for="(item, index) in item.dropdownItems"
                       :key="index"
                     >
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                      <v-list-item-title @click="navigateTo(item.link)">{{
+                        item.title
+                      }}</v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -73,22 +75,22 @@ export default {
         {
           title: "Section 1",
           dropdownItems: [
-            { title: "Subsection 1-1", id: 1 },
-            { title: "Subsection 1-2", id: 2 },
+            { title: "Subsection 1-1", id: 1, link: "/page1" },
+            { title: "Subsection 1-2", id: 2, link: "/page2" },
           ],
         },
         {
           title: "Section 2",
           dropdownItems: [
-            { title: "Subsection 2-1", id: 3 },
-            { title: "Subsection 2-2", id: 4 },
+            { title: "Subsection 2-1", id: 3, link: "/page3" },
+            { title: "Subsection 2-2", id: 4, link: "/page4" },
           ],
         },
         {
           title: "Section 3",
           dropdownItems: [
-            { title: "Subsection 3-1", id: 5 },
-            { title: "Subsection 3-2", id: 6 },
+            { title: "Subsection 3-1", id: 5, link: "/page5" },
+            { title: "Subsection 3-2", id: 6, link: "/page6" },
           ],
         },
       ],
@@ -101,7 +103,7 @@ export default {
   },
   methods: {
     navigateTo(link) {
-      // Implement your navigation logic here
+      this.$router.push(link);
     },
     hasProperty(item) {
       return item.hasOwnProperty("dropdownItems");
@@ -157,6 +159,11 @@ export default {
 
 .subitems {
   box-shadow: none;
+}
+
+.nav-list:hover,
+.subitems:hover {
+  cursor: pointer;
 }
 </style>
 
