@@ -1,16 +1,25 @@
 <template>
-  <v-container fluid>
-    <Logo v-if="!isMobile" />
-    <Navbar />
-  </v-container>
-  <v-container fluid class="mainPage"> teste </v-container>
-  <v-container fluid> <Article v-if="!isMobile"></Article> </v-container>
+  <v-main class="main">
+    <v-container fluid>
+      <Logo v-if="!isMobile" />
+      <Navbar />
+      <v-container
+        fluid
+        :class="{ articles: !isMobile, articlesMobile: isMobile }"
+      >
+        <Article v-if="!isMobile"></Article>
+        <ArticleMobile v-if="isMobile" />
+      </v-container>
+      <!-- Rest of the content -->
+    </v-container>
+  </v-main>
 </template>
 
 <script setup>
 import Logo from "@/components/Logo.vue";
 import Navbar from "@/components/Navbar.vue";
 import Article from "@/components/Article.vue";
+import ArticleMobile from "@/components/ArticleMobile.vue";
 </script>
 
 <script>
@@ -24,16 +33,17 @@ export default {
 </script>
 
 <style>
-.articleContaier {
-  margin-top: 72px;
-  max-width: 90% !important;
-  flex: 1;
+.main {
+  padding-top: 0px !important;
 }
-.cardArticle {
-  margin-left: 150px;
+
+.articles {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
 }
-.mainPage {
-  margin-top: 120px;
-  text-align: center;
+
+.articlesMobile {
+  margin-top: 50px;
 }
 </style>

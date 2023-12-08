@@ -17,7 +17,7 @@
     </div>
 
     <v-container fluid class="nav-container">
-      <v-row align="center" justify="center">
+      <v-row :align="'center'" justify="center">
         <v-col cols="auto" v-if="!isMobile">
           <v-list dense class="nav-list">
             <template v-for="item in items" :key="item.title">
@@ -166,11 +166,3 @@ export default {
   cursor: pointer;
 }
 </style>
-
-<!-- <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-.fancyfont {
-  font-family: "Pacifico", Pacifico;
-  overflow: auto !important ;
-}
-</style> -->
