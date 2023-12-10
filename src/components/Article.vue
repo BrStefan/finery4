@@ -78,7 +78,6 @@ export default {
     redirectToArticlePage(articleId) {
       const store = useAppStore();
       store.setArticleRead(articleId);
-      console.log(store.articleRead);
       router.push({ name: "article" });
     },
   },
