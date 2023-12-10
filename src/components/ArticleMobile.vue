@@ -35,40 +35,11 @@
 </template>
 
 <script>
+import { articles } from "@/utils/ArticleData";
 export default {
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title: "Article 1",
-          description: "Description for Article 1",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 2,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 3,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 4,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        // Add more articles as needed
-      ],
+      articles,
       pageSize: 3, // Number of articles per page
       currentPage: 1, // Current page
     };

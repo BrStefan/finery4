@@ -8,7 +8,10 @@
     ></v-pagination>
     <v-row flex-wrap>
       <v-row v-for="article in paginatedArticles" :key="article.id">
-        <v-card class="mb-4 cardArticle">
+        <v-card
+          class="mb-4 cardArticle"
+          @click="redirectToArticlePage(article.id)"
+        >
           <v-card-text class="articleInnerContainer">
             <v-row no-gutters>
               <v-col cols="2">
@@ -47,40 +50,13 @@
 </template>
 
 <script>
+import { articles } from "@/utils/ArticleData";
+import { useAppStore } from "@/store/app";
+import router from "@/router/index";
 export default {
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title: "Article 1",
-          description: "Description for Article 1",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 2,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 3,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        {
-          id: 4,
-          title: "Article 2",
-          description: "Description for Article 2",
-          image: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-          hashtags: ["#sunglasses", "#summer"],
-        },
-        // Add more articles as needed
-      ],
+      articles,
       pageSize: 3, // Number of articles per page
       currentPage: 1, // Current page
     };
@@ -98,6 +74,12 @@ export default {
   methods: {
     paginate() {
       // Perform any additional logic here if needed
+    },
+    redirectToArticlePage(articleId) {
+      const store = useAppStore();
+      store.setArticleRead(articleId);
+      console.log(store.articleRead);
+      router.push({ name: "article" });
     },
   },
 };
